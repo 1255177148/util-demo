@@ -1,11 +1,11 @@
 http:
-  #\u6700\u5927\u8FDE\u63A5\u6570
+  #最大连接数
   maxTotal: 5000
-  #\u5E76\u53D1\u6570
+  #并发数
   defaultMaxPerRoute: 3000
-  #\u521B\u5EFA\u8FDE\u63A5\u7684\u6700\u957F\u65F6\u95F4
+  #创建连接的最长时间
   connectTimeout: 1000
-  #\u4ECE\u8FDE\u63A5\u6C60\u4E2D\u83B7\u53D6\u5230\u8FDE\u63A5\u7684\u6700\u957F\u65F6\u95F4
+  #从连接池中获取到连接的最长时间
   connectionRequestTimeout: 500
-  #\u6570\u636E\u4F20\u8F93\u7684\u6700\u957F\u65F6\u95F4
+  #数据传输的最长时间
   socketTimeout: 15000
