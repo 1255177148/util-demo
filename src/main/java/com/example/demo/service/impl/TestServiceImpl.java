@@ -1,7 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.User;
 import com.example.demo.service.TestService;
+import com.example.demo.util.RestTemplateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,9 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestServiceImpl implements TestService {
 
-    @Override
-    public String test(User user) {
+    @Autowired
+    RestTemplateUtil restTemplateUtil;
 
-        return null;
+    @Override
+    public String test() {
+        String url = "http://localhost:8762/openApi/v1/test";
+        String result = restTemplateUtil.get(url, null, String.class);
+        return result;
     }
 }
