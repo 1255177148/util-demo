@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author hezhan
@@ -18,7 +16,27 @@ public class TestController {
     TestService testService;
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return testService.test();
+    }
+
+    @GetMapping("/testHeader")
+    public String testHeader(@RequestParam("name") String name) {
+        return testService.getForHeader(name);
+    }
+
+    @PutMapping("/testPut")
+    public void testPut(){
+        testService.testPut();
+    }
+
+    @PostMapping("/testPost")
+    public String testPost(){
+        return testService.testPost();
+    }
+
+    @DeleteMapping("/testDelete/{id}")
+    public void testDelete(@PathVariable("id") String id){
+        testService.testDelete(id);
     }
 }

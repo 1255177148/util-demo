@@ -81,6 +81,7 @@ public class RestTemplateUtil {
      */
     public void put(String url, Map<String, Map<String, String>> param) {
         HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Map<String, String> headerParam = param.get(KEY_HEADER);
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
@@ -107,6 +108,7 @@ public class RestTemplateUtil {
      */
     public <T> T post(String url, Map<String, Map<String, String>> param, Class<T> type) {
         HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Map<String, String> headerParam = param.get(KEY_HEADER);
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
@@ -135,9 +137,9 @@ public class RestTemplateUtil {
                 headers.add(entry.getKey(), entry.getValue());
             }
         }
-        HttpEntity httpEntity = new HttpEntity<>(headers);
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         try {
-            restTemplate.delete(url, httpEntity);
+            restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, String.class);
         } catch (Exception e) {
             throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
         }
