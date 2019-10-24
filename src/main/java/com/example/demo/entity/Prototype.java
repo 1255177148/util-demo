@@ -10,7 +10,24 @@ import com.example.demo.exception.RemoteException;
 public class Prototype implements Cloneable {
     private String name;
     private int age;
-    private PrototypeSon prototypeSon;
+    private CloneDepth cloneDepth;
+    private CloneShallow cloneShallow;
+
+    public CloneShallow getCloneShallow() {
+        return cloneShallow;
+    }
+
+    public void setCloneShallow(CloneShallow cloneShallow) {
+        this.cloneShallow = cloneShallow;
+    }
+
+    public CloneDepth getCloneDepth() {
+        return cloneDepth;
+    }
+
+    public void setCloneDepth(CloneDepth cloneDepth) {
+        this.cloneDepth = cloneDepth;
+    }
 
     public String getName() {
         return name;
@@ -28,18 +45,11 @@ public class Prototype implements Cloneable {
         this.age = age;
     }
 
-    public PrototypeSon getPrototypeSon() {
-        return prototypeSon;
-    }
-
-    public void setPrototypeSon(PrototypeSon prototypeSon) {
-        this.prototypeSon = prototypeSon;
-    }
-
     public Prototype clone(){
         Prototype prototype = null;
         try {
             prototype = (Prototype)super.clone();
+            prototype.setCloneDepth(this.cloneDepth.clone());//深度克隆CloneDepth对象实例
         } catch (CloneNotSupportedException e) {
             throw new RemoteException("克隆Prototype对象实例时出错");
         }

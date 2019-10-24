@@ -2,10 +2,11 @@ package com.example.demo.entity;
 
 /**
  * @Author hezhan
- * @Date 2019/10/23 14:31
- * 用于测试原型设计模式（作为引用对象）
+ * @Date 2019/10/24 11:30
+ * 用于测试原型设计模式（作为引用对象，浅度克隆部分）
  */
-public class PrototypeSon implements Cloneable {
+public class CloneShallow {
+
     private String name;
     private int age;
 
