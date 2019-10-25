@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.entity.CloneDepth;
-import com.example.demo.entity.CloneShallow;
-import com.example.demo.entity.Prototype;
+import com.example.demo.entity.prototype.CloneDepth;
+import com.example.demo.entity.prototype.CloneShallow;
+import com.example.demo.entity.prototype.Prototype;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
