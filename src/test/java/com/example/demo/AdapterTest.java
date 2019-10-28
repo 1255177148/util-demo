@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * @Author hezhan
  * @Date 2019/10/28 11:10
+ * 适配器模式测试类
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
