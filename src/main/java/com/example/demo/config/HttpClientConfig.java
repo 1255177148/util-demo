@@ -2,14 +2,11 @@ package com.example.demo.config;
 
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author hezhan
@@ -38,7 +35,7 @@ public class HttpClientConfig {
         /**
          * 首先实例化一个连接池管理器，设置最大连接数、并发连接数
          */
-        PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(3, TimeUnit.SECONDS);
+        PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager();
         //最大连接数
         httpClientConnectionManager.setMaxTotal(maxTotal);
         //并发数
@@ -53,7 +50,7 @@ public class HttpClientConfig {
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
         httpClientBuilder.setConnectionManager(httpClientConnectionManager);
         httpClientBuilder.setDefaultRequestConfig(getRequestConfig());
-        httpClientBuilder.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
+//        httpClientBuilder.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
         /**
          * 注入连接池，用于获取httpClient
          */
