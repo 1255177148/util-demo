@@ -10,4 +10,6 @@ public interface TestService {
     String testPost();
 
     void testDelete(String id);
+
+    String testException();
 }

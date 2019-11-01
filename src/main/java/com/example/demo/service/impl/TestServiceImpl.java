@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.service.TestService;
+import com.example.demo.util.HttpUtil;
 import com.example.demo.util.RestTemplateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class TestServiceImpl implements TestService {
 
     @Autowired
     RestTemplateUtil restTemplateUtil;
+
+    @Autowired
+    HttpUtil httpUtil;
 
     public static String KEY_HEADER = "KEY_HEADER";
 
@@ -71,5 +75,18 @@ public class TestServiceImpl implements TestService {
         Map<String, String> headerParam = new HashMap<>();
         headerParam.put("name", "hezhan");
         restTemplateUtil.delete(url, headerParam);
+    }
+
+    @Override
+    public String testException() {
+        String url = "http://localhost:8762/openApi/v1/test/exception";
+        return restTemplateUtil.get(url, null, String.class);
+//        Map<String, String> result = new HashMap<>();
+//        try {
+//            result = httpUtil.doGet(url, null);
+//        } catch (Exception e) {
+//            throw new RemoteException("访问" + url + "时出现错误，错误原因为：", e);
+//        }
+//        return "";
     }
 }

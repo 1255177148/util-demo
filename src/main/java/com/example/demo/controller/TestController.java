@@ -39,4 +39,9 @@ public class TestController {
     public void testDelete(@PathVariable("id") String id){
         testService.testDelete(id);
     }
+
+    @GetMapping("/test/exception")
+    public String testException(){
+        return testService.testException();
+    }
 }
