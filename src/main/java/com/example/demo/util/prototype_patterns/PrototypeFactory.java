@@ -1,4 +1,4 @@
-package com.example.demo.util.factory;
+package com.example.demo.util.prototype_patterns;
 
 import com.example.demo.entity.prototype.Prototype;
 
