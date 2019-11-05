@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.TestService;
+import com.example.demo.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ public class TestController {
 
     @Autowired
     TestService testService;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @GetMapping("/test")
     public String test() {
@@ -43,5 +47,11 @@ public class TestController {
     @GetMapping("/test/exception")
     public String testException(){
         return testService.testException();
+    }
+
+    @GetMapping("/test/redis")
+    public void testRedis(){
+        redisUtil.set("hezhan", "123", 500);
+        redisUtil.setToken("hezhan", "123", 60);
     }
 }
