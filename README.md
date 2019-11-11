@@ -42,6 +42,9 @@ eureka和消息队列其实都属于中介模式，就是将很多相依赖的�
 双方就是面对面的通信，如果再加一人，或者再加多人，
 就会很乱，这样把多方之间的依赖抽离出来，形成mq，
 然后各方只需要与mq保持通信就可以了。
+## 组合模式
+组合多个对象形成树形结构，对象的行为可以从根节点不断递归，
+也就是用户只需要调用根节点的方法，则此行为就会作用于所有的子节点。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
