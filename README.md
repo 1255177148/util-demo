@@ -45,6 +45,14 @@ eureka和消息队列其实都属于中介模式，就是将很多相依赖的�
 ## 组合模式
 组合多个对象形成树形结构，对象的行为可以从根节点不断递归，
 也就是用户只需要调用根节点的方法，则此行为就会作用于所有的子节点。
+## 迭代器模式
+集合可以视为一个容器，如果想取出容器里的数据，则可以用迭代器来遍历取出，
+但是每个容器如果都按照自己的方式自定义迭代器，则不利于对外使用，
+所以可以定义一个迭代器接口，每个容器都实现此接口，
+然后再在定义的迭代器方法内实现自己容器的遍历逻辑，
+这样每个容器对外提供的遍历方法都是统一的，用户不关心内部具体实现，
+只需要调用迭代器的方法即可遍历容器，目前Java内的每种集合，
+Collection，List、Set、Map等，都有自己的迭代器Iterator。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
