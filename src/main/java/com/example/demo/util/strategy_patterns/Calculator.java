@@ -1,4 +1,4 @@
-package com.example.demo.util.design_patterns;
+package com.example.demo.util.strategy_patterns;
 
 import com.example.demo.service.Strategy;
 

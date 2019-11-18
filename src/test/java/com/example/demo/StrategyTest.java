@@ -2,7 +2,7 @@ package com.example.demo;
 
 import com.example.demo.service.impl.Addition;
 import com.example.demo.service.impl.Subtraction;
-import com.example.demo.util.design_patterns.Calculator;
+import com.example.demo.util.strategy_patterns.Calculator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -53,6 +53,10 @@ eureka和消息队列其实都属于中介模式，就是将很多相依赖的�
 这样每个容器对外提供的遍历方法都是统一的，用户不关心内部具体实现，
 只需要调用迭代器的方法即可遍历容器，目前Java内的每种集合，
 Collection，List、Set、Map等，都有自己的迭代器Iterator。
+## 备忘录模式
+典型的应用场景就是文本文档的撤销操作，或者浏览器的回退功能。
+此模式可以构建一个第三方历史记录类来封装历史信息，
+不会与信息产生影响。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
