@@ -61,6 +61,9 @@ Collection，List、Set、Map等，都有自己的迭代器Iterator。
 典型的应用场景就是公司审批流程，工作流，就是有明确的流程顺序和分工，
 这是就可以抽象出一个责任链类，然后每一个分工或者流程都继承责任链，
 这样一个流程就出现了。
+## 观察者模式
+典型的应用场景就是消息队列的订阅机制，当对象之前有一对多的关系，
+且当对象改变时，所有依赖于它的对象都会收到通知并自动产生行为。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
