@@ -57,6 +57,10 @@ Collection，List、Set、Map等，都有自己的迭代器Iterator。
 典型的应用场景就是文本文档的撤销操作，或者浏览器的回退功能。
 此模式可以构建一个第三方历史记录类来封装历史信息，
 不会与信息产生影响。
+## 责任链模式
+典型的应用场景就是公司审批流程，工作流，就是有明确的流程顺序和分工，
+这是就可以抽象出一个责任链类，然后每一个分工或者流程都继承责任链，
+这样一个流程就出现了。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
