@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import okhttp3.ConnectionPool;
-import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +20,14 @@ public class OkHttpConfig {
      */
     @Bean
     public OkHttpClient okHttpClient(){
-        Dispatcher dispatcher = new Dispatcher();
-        dispatcher.setMaxRequests(5000);// 设置最大请求数
-        dispatcher.setMaxRequestsPerHost(3000);// 设置单个ip最大请求数
+//        Dispatcher dispatcher = new Dispatcher();
+//        dispatcher.setMaxRequests(100);// 设置最大请求数
+//        dispatcher.setMaxRequestsPerHost(100);// 设置单个ip最大请求数
         return new OkHttpClient().newBuilder()
-                .connectTimeout(1000, TimeUnit.MILLISECONDS)// 设置连接超时时间
-                .readTimeout(15, TimeUnit.SECONDS)// 设置读取超时时间
-                .writeTimeout(15, TimeUnit.SECONDS)// 设置写超时时间
-                .dispatcher(dispatcher)// 配置分发数
+                .connectTimeout(10000, TimeUnit.MILLISECONDS)// 设置连接超时时间
+                .readTimeout(10, TimeUnit.SECONDS)// 设置读取超时时间
+                .writeTimeout(10, TimeUnit.SECONDS)// 设置写超时时间
+//                .dispatcher(dispatcher)// 配置分发数
                 .connectionPool(pool())// 配置连接池
                 .build();
     }
@@ -39,6 +38,6 @@ public class OkHttpConfig {
      */
     @Bean
     public ConnectionPool pool(){
-        return new ConnectionPool(200, 5, TimeUnit.MINUTES);
+        return new ConnectionPool(20, 5, TimeUnit.MINUTES);
     }
 }
