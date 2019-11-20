@@ -5,6 +5,7 @@ import com.example.demo.exception.RemoteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
@@ -28,17 +29,14 @@ public class RestTemplateUtil {
 
     /**
      * 有header参数的get请求
-     * @param url
-     * @param param
-     * @param headerParam
+     * @param url 请求路径
+     * @param headerParam header参数
+     * @param uriVariables 可变参数
      * @return
      */
-    public ResponseEntity<String> getForHeader(String url, Map<String, Object> param, Map<String, String> headerParam) {
+    public ResponseEntity<String> getForHeader(String url, Map<String, String> headerParam, Map<String, Object> uriVariables) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        if (param != null) {
-            url = httpUtil.parseUrl(url, param);
-        }
         if (headerParam != null) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
                 headers.add(entry.getKey(), entry.getValue());
@@ -46,7 +44,11 @@ public class RestTemplateUtil {
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         try {
-            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+            if (CollectionUtils.isEmpty(uriVariables)){
+                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+            } else {
+                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class, uriVariables);
+            }
         } catch (Exception e) {
             throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
         }
@@ -54,19 +56,19 @@ public class RestTemplateUtil {
 
     /**
      * 不传header参数的get请求
-     *
-     * @param url
-     * @param param
-     * @param clazz
-     * @param <T>
+     * @param url 请求路径
+     * @param clazz 指定返回类型
+     * @param uriVariables 可变参数
+     * @param <T> 返回类型
      * @return
      */
-    public <T> T get(String url, Map<String, Object> param, Class<T> clazz) {
-        if (param != null) {
-            url = httpUtil.parseUrl(url, param);
-        }
+    public <T> T get(String url, Class<T> clazz, Map<String, Object> uriVariables) {
         try {
-            return restTemplate.getForObject(url, clazz);
+            if (CollectionUtils.isEmpty(uriVariables)){
+                return restTemplate.getForObject(url, clazz);
+            } else {
+                return restTemplate.getForObject(url, clazz, uriVariables);
+            }
         } catch (Exception e) {
             throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
         }
@@ -74,9 +76,8 @@ public class RestTemplateUtil {
 
     /**
      * 无返回值的put请求
-     *
-     * @param url
-     * @param param
+     * @param url 请求路径
+     * @param param 参数
      */
     public void put(String url, Map<String, Map<String, String>> param) {
         HttpHeaders headers = new HttpHeaders();
@@ -98,11 +99,10 @@ public class RestTemplateUtil {
 
     /**
      * post请求
-     *
-     * @param url
-     * @param param
-     * @param type
-     * @param <T>
+     * @param url 请求路径
+     * @param param 参数
+     * @param type 指定返回类型
+     * @param <T> 返回类型
      * @return
      */
     public <T> T post(String url, Map<String, Map<String, String>> param, Class<T> type) {
@@ -125,9 +125,8 @@ public class RestTemplateUtil {
 
     /**
      * delete请求
-     *
-     * @param url
-     * @param headerParam
+     * @param url 请求路径
+     * @param headerParam header参数
      */
     public void delete(String url, Map<String, String> headerParam) {
         HttpHeaders headers = new HttpHeaders();

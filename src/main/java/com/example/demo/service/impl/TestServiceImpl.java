@@ -30,7 +30,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public String test() {
         String url = "http://localhost:8762/openApi/v1/test";
-        String result = restTemplateUtil.get(url, null, String.class);
+        String result = restTemplateUtil.get(url, String.class, null);
         return result;
     }
 
@@ -39,7 +39,7 @@ public class TestServiceImpl implements TestService {
         String url = "http://localhost:8762/openApi/v1/testHeader";
         Map<String, String> headerParam = new HashMap<>();
         headerParam.put("name", name);
-        ResponseEntity<String> response = restTemplateUtil.getForHeader(url, null, headerParam);
+        ResponseEntity<String> response = restTemplateUtil.getForHeader(url, headerParam, null);
         return response.getBody();
     }
 
@@ -80,7 +80,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public String testException() {
         String url = "http://localhost:8762/openApi/v1/test/exception";
-        return restTemplateUtil.get(url, null, String.class);
+        return restTemplateUtil.get(url, String.class, null);
 //        Map<String, String> result = new HashMap<>();
 //        try {
 //            result = httpUtil.doGet(url, null);

@@ -17,11 +17,27 @@ public class RestTemplateConfig {
     @Autowired
     HttpClientConfig httpClientConfig;
 
+    @Autowired
+    OkHttpConfig okHttpConfig;
+
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate(httpRequestFactory());
     }
 
+    /**
+     * 底层使用OkHttp实现http通信
+     * @return
+     */
+//    @Bean
+//    public ClientHttpRequestFactory httpRequestFactory(){
+//        return new OkHttp3ClientHttpRequestFactory(okHttpConfig.okHttpClient());
+//    }
+
+    /**
+     * 底层使用httpClient实现http通信
+     * @return
+     */
     @Bean
     public ClientHttpRequestFactory httpRequestFactory(){
         return new HttpComponentsClientHttpRequestFactory(httpClientConfig.httpClient());
