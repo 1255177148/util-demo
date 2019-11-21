@@ -61,7 +61,7 @@ public class TestServiceImpl implements TestService {
         String url = "http://localhost:8762/openApi/v1/testPost";
         Map<String, String> bodyParam = new HashMap<>();
         Map<String, String> headerParam = new HashMap<>();
-        bodyParam.put("name", "hezhan");
+        bodyParam.put("name", "贺瞻");
         headerParam.put("name", "hezhan");
         Map<String, Map<String, String>> param = new HashMap<>();
         param.put(KEY_BODY, bodyParam);

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.service.TestService;
 import com.example.demo.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,11 @@ public class TestController {
     public void testRedis(){
         redisUtil.set("hezhan", "123", 500);
         redisUtil.setToken("hezhan", "123", 60);
+    }
+
+    @PostMapping("/test/post")
+    public String post(@RequestBody String user){
+        JSONObject jsonObject = JSONObject.parseObject(user);
+        return user;
     }
 }

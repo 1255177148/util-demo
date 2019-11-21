@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 /**
@@ -39,7 +41,7 @@ public class RestTemplateUtil {
         headers.setContentType(MediaType.APPLICATION_JSON);
         if (headerParam != null) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
-                headers.add(entry.getKey(), entry.getValue());
+                headers.add(entry.getKey(), getValueEncode(entry.getValue()));
             }
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
@@ -86,7 +88,7 @@ public class RestTemplateUtil {
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
-                headers.add(entry.getKey(), entry.getValue());
+                headers.add(entry.getKey(), getValueEncode(entry.getValue()));
             }
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(JSON.toJSONString(bodyParam), headers);
@@ -112,7 +114,7 @@ public class RestTemplateUtil {
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
-                headers.add(entry.getKey(), entry.getValue());
+                headers.add(entry.getKey(), getValueEncode(entry.getValue()));
             }
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(JSON.toJSONString(bodyParam), headers);
@@ -132,7 +134,7 @@ public class RestTemplateUtil {
         HttpHeaders headers = new HttpHeaders();
         if (headerParam != null) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
-                headers.add(entry.getKey(), entry.getValue());
+                headers.add(entry.getKey(), getValueEncode(entry.getValue()));
             }
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
@@ -141,5 +143,28 @@ public class RestTemplateUtil {
         } catch (Exception e) {
             throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
         }
+    }
+
+    /**
+     * 由于OkHttp会对header参数进行校验，不支持中文，所以封装了一个转义方法
+     * @param value 校验的header参数
+     * @return
+     */
+    private String getValueEncode(String value){
+        if (value == null){
+            return "";
+        }
+        String newValue = value.replace("\n", "");
+        for (int i = 0,length = newValue.length();i < length;i++){
+            char c = newValue.charAt(i);
+            if (c <= 31 && c != '\t' || c >= 127){
+                try {
+                    return URLEncoder.encode(newValue, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    throw new RemoteException("URLEncoder encode header参数" + newValue + "失败");
+                }
+            }
+        }
+        return newValue;
     }
 }
