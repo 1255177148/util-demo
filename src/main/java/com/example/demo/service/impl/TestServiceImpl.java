@@ -1,12 +1,14 @@
 package com.example.demo.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.User;
 import com.example.demo.service.TestService;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.RestTemplateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +41,8 @@ public class TestServiceImpl implements TestService {
         String url = "http://localhost:8762/openApi/v1/testHeader";
         Map<String, String> headerParam = new HashMap<>();
         headerParam.put("name", name);
-        ResponseEntity<String> response = restTemplateUtil.getForHeader(url, headerParam, null);
-        return response.getBody();
+        User response = restTemplateUtil.getForHeader(url, headerParam, null, User.class);
+        return JSON.toJSONString(response);
     }
 
     @Override
@@ -88,5 +90,17 @@ public class TestServiceImpl implements TestService {
 //            throw new RemoteException("访问" + url + "时出现错误，错误原因为：", e);
 //        }
 //        return "";
+    }
+
+    @Override
+    public String testPostForBody() {
+        String url = "http://localhost:8762/openApi/v1/test/post";
+        Map<String, Object> param = new HashMap<>();
+        User user = new User();
+        user.setName("贺瞻");
+        user.setAge(3);
+        user.setDate(new Date());
+        param.put(KEY_BODY, user);
+        return restTemplateUtil.postForBody(url, param, String.class);
     }
 }

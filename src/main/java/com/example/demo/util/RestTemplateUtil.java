@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.User;
 import com.example.demo.exception.RemoteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -36,7 +37,7 @@ public class RestTemplateUtil {
      * @param uriVariables 可变参数
      * @return
      */
-    public ResponseEntity<String> getForHeader(String url, Map<String, String> headerParam, Map<String, Object> uriVariables) {
+    public <T> T getForHeader(String url, Map<String, String> headerParam, Map<String, Object> uriVariables, Class<T> clazz) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         if (headerParam != null) {
@@ -47,9 +48,9 @@ public class RestTemplateUtil {
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         try {
             if (CollectionUtils.isEmpty(uriVariables)){
-                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, clazz).getBody();
             } else {
-                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class, uriVariables);
+                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, clazz, uriVariables).getBody();
             }
         } catch (Exception e) {
             throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
@@ -118,6 +119,32 @@ public class RestTemplateUtil {
             }
         }
         HttpEntity<String> httpEntity = new HttpEntity<>(JSON.toJSONString(bodyParam), headers);
+        try {
+            return restTemplate.postForObject(url, httpEntity, type);
+        } catch (Exception e) {
+            throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
+        }
+    }
+
+    /**
+     * 当body参数为对象时，就可以明显的感觉到配置的FastJson转换器起作用了
+     * @param url
+     * @param param
+     * @param type
+     * @param <T>
+     * @return
+     */
+    public <T> T postForBody(String url, Map<String, Object> param, Class<T> type) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        Map<String, String> headerParam = (Map<String, String>) param.get(KEY_HEADER);
+        User bodyParam = (User) param.get(KEY_BODY);
+        if (headerParam != null) {
+            for (Map.Entry<String, String> entry : headerParam.entrySet()) {
+                headers.add(entry.getKey(), getValueEncode(entry.getValue()));
+            }
+        }
+        HttpEntity<User> httpEntity = new HttpEntity<>(bodyParam, headers);
         try {
             return restTemplate.postForObject(url, httpEntity, type);
         } catch (Exception e) {

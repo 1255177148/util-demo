@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.example.demo.service.TestService;
 import com.example.demo.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +55,13 @@ public class TestController {
         redisUtil.setToken("hezhan", "123", 60);
     }
 
+    /**
+     * 测试发送请求时RestTemplate配置的FastJson消息转换器
+     * @return
+     */
     @PostMapping("/test/post")
-    public String post(@RequestBody String user){
-        JSONObject jsonObject = JSONObject.parseObject(user);
-        return user;
+    public String post(){
+        String result = testService.testPostForBody();
+        return result;
     }
 }
