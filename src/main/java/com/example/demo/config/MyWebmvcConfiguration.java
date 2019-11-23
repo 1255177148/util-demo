@@ -27,7 +27,7 @@ public class MyWebmvcConfiguration implements WebMvcConfigurer {
                 SerializerFeature.WriteMapNullValue, //是否输出值为null的字段，默认为false
                 SerializerFeature.WriteNullStringAsEmpty, //String类型字段值如果为null，则输出为""，而非null
                 SerializerFeature.WriteNullListAsEmpty, //List字段值如果为null，则输出[]，而非null
-                SerializerFeature.WriteDateUseDateFormat, //全局修改日期格式
+//                SerializerFeature.WriteDateUseDateFormat, //全局修改日期格式
                 SerializerFeature.DisableCircularReferenceDetect); //消除对同一对象循环引用的问题
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         List<MediaType> mediaTypes = new ArrayList<>();
