@@ -64,6 +64,12 @@ Collection，List、Set、Map等，都有自己的迭代器Iterator。
 ## 观察者模式
 典型的应用场景就是消息队列的订阅机制，当对象之前有一对多的关系，
 且当对象改变时，所有依赖于它的对象都会收到通知并自动产生行为。
+## 享元模式
+顾名思义，享元就是共享，也就是当创建大量属性大多一致的相似对象时，可以用享元模式，
+相同的对象只保留一份，将不能共享的属性或者状态外部化，举个例子，
+围棋的黑白棋可以只保留两个对象，即黑棋对象和白棋对象，
+黑白棋的位置归为外部属性，这样每次下棋的时候都是调用的同一黑白棋对象，
+只不过是坐标的变化而已。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
