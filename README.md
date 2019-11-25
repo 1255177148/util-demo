@@ -70,6 +70,12 @@ Collection，List、Set、Map等，都有自己的迭代器Iterator。
 围棋的黑白棋可以只保留两个对象，即黑棋对象和白棋对象，
 黑白棋的位置归为外部属性，这样每次下棋的时候都是调用的同一黑白棋对象，
 只不过是坐标的变化而已。
+## 代理模式
+代理模式现实生活中的例子可以参考明星的经纪人，经纪人全权代理明星无暇顾及的事务，
+比如宣传推广、合同谈判之列。放到代码中就是给目标代理类增加额外功能逻辑来扩展代理类的功能。
+代理可以分为动态代理和静态代理，动态代理Java中运用的比较多，可以参照spring的AOP即面向切面编程，
+运用的就是动态代理；或者也可以参照springboot中在业务逻辑上加上@Transactional事务注解，
+来为这段逻辑注册事务，运用的也是动态代理。
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
