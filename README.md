@@ -77,5 +77,13 @@ Collection，List、Set、Map等，都有自己的迭代器Iterator。
 运用的就是动态代理；或者也可以参照springboot中在业务逻辑上加上@Transactional事务注解，
 来为这段逻辑注册事务，运用的也是动态代理。
 
+## 定时任务
+使用springboot自带的spring task来实现定时任务，
+值得注意的是，这种实现定时任务的方式为单线程，
+如果定时任务很多的情况下，一旦某一个定时任务阻塞，
+将会阻塞之后所有的定时任务，故需要开启异步执行，
+即多线程，配置异步执行的方式有两种，
+分别在AsyncTaskConfig1和AsyncTaskConfig2中体现。
+
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
