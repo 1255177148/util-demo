@@ -23,9 +23,13 @@ public class ResponsibilityTest {
 
     @Test
     public void test(){
-        Approver approver = new Staff("小张");
+//        Approver approver = new Staff("小张");
+//        approver.setNextApprover(new Manager("老李")).setNextApprover(new CEO("刘总"));//这一步可以用工厂模式创建一条责任链
         //下一步就是创建一条责任链或者流程
-        approver.setNextApprover(new Manager("老李")).setNextApprover(new CEO("刘总"));//这一步可以用工厂模式创建一条责任链
+        Approver.Builder builder = new Approver.Builder();
+        Approver approver = builder.add(new Staff("小张"))
+                .add(new Manager("老李"))
+                .add(new CEO("刘总")).build();
         //1000元直接找员工审批
         approver.approve(1000);
         //4000元要找经理审批
