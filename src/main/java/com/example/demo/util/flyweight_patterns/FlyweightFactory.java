@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class FlyweightFactory {
     private static final FlyweightFactory FLYWEIGHT_FACTORY = new FlyweightFactory();
-    private Map<String, Chess> chessMap;// 共享池
+    private final Map<String, Chess> chessMap;// 共享池
 
     private FlyweightFactory(){
         chessMap = new ConcurrentHashMap<>();

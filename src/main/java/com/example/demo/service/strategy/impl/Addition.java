@@ -1,6 +1,6 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.strategy.impl;
 
-import com.example.demo.service.Strategy;
+import com.example.demo.service.strategy.Strategy;
 
 /**
  * @Author hezhan

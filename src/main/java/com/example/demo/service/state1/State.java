@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.state1;
 
 import com.example.demo.util.state_patterns.Switcher;
 

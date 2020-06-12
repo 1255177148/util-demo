@@ -1,7 +1,7 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.adapter.impl;
 
-import com.example.demo.service.DualPin;
-import com.example.demo.service.TriplePin;
+import com.example.demo.service.adapter.DualPin;
+import com.example.demo.service.adapter.TriplePin;
 
 /**
  * @Author hezhan

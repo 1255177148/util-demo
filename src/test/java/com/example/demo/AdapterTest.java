@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.service.DualPin;
-import com.example.demo.service.TriplePin;
-import com.example.demo.service.impl.Adapter;
-import com.example.demo.service.impl.TV;
+import com.example.demo.service.adapter.DualPin;
+import com.example.demo.service.adapter.TriplePin;
+import com.example.demo.service.adapter.impl.Adapter;
+import com.example.demo.service.adapter.impl.TV;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

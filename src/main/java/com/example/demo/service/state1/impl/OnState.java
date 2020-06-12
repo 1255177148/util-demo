@@ -1,6 +1,7 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.state1.impl;
 
-import com.example.demo.service.State;
+import com.example.demo.service.state1.State;
+import com.example.demo.util.SpringUtils;
 import com.example.demo.util.state_patterns.Switcher;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class OnState implements State {
     @Override
     public void turnOff(Switcher switcher) {
         //逻辑代码
+        switcher.setState(SpringUtils.getBean("offState", State.class));
         System.out.println("关灯");
     }
 }

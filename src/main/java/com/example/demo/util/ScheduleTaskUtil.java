@@ -28,6 +28,6 @@ public class ScheduleTaskUtil {
 
     @Scheduled(cron = "0/2 * * * * ? ")
     public void task3(){
-        System.out.println(Thread.currentThread().getName() + "------------>task2");
+        System.out.println(Thread.currentThread().getName() + "------------>task3");
     }
 }

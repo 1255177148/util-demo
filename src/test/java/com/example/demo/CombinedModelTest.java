@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * @Author hezhan
  * @Date 2019/11/11 13:31
- * 租户模型设计测试类
+ * 组合模型设计测试类
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

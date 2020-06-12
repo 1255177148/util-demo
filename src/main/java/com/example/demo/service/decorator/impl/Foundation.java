@@ -1,6 +1,6 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.decorator.impl;
 
-import com.example.demo.service.Showable;
+import com.example.demo.service.decorator.Showable;
 
 /**
  * @Author hezhan

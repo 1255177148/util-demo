@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.service.Showable;
-import com.example.demo.service.impl.Foundation;
-import com.example.demo.service.impl.Girl;
-import com.example.demo.service.impl.Lipstick;
+import com.example.demo.service.decorator.Showable;
+import com.example.demo.service.decorator.impl.Foundation;
+import com.example.demo.service.decorator.impl.Girl;
+import com.example.demo.service.decorator.impl.Lipstick;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

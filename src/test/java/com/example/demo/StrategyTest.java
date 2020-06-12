@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.service.impl.Addition;
-import com.example.demo.service.impl.Subtraction;
+import com.example.demo.service.strategy.impl.Addition;
+import com.example.demo.service.strategy.impl.Subtraction;
 import com.example.demo.util.strategy_patterns.Calculator;
 import org.junit.Test;
 import org.junit.runner.RunWith;

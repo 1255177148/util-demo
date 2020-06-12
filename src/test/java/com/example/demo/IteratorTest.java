@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.service.Iterator;
-import com.example.demo.service.impl.DrivingRecorder;
+import com.example.demo.service.iterator.Iterator;
+import com.example.demo.service.iterator.impl.DrivingRecorder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

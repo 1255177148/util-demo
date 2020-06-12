@@ -1,6 +1,6 @@
 package com.example.demo.util.strategy_patterns;
 
-import com.example.demo.service.Strategy;
+import com.example.demo.service.strategy.Strategy;
 
 /**
  * @Author hezhan
