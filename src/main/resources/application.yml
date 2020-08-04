@@ -29,3 +29,6 @@ spring:
     host: 47.100.235.4
     port: 6379
     password: codis123456
+
+image:
+  url: image/
