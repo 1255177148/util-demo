@@ -64,4 +64,9 @@ public class TestController {
         String result = testService.testPostForBody();
         return result;
     }
+
+    @GetMapping("/test/aop")
+    public String testAop(){
+        return "测试AOP";
+    }
 }
