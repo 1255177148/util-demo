@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.Test;
 import com.example.demo.entity.User;
 import com.example.demo.exception.RemoteException;
 import com.example.demo.service.ResponseService;
@@ -31,5 +32,15 @@ public class ResponseController {
             throw new RemoteException("URLDecoder decode header参数失败");
         }
         return responseService.getResponse(name);
+    }
+
+    /**
+     * 测试自定义注解
+     * @return
+     */
+    @GetMapping("/test/annotation")
+    @Test
+    public String testAnnotation(){
+        return "测试自定义注解";
     }
 }
