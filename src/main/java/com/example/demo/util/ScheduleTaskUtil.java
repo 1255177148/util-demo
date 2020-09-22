@@ -1,9 +1,12 @@
 package com.example.demo.util;
 
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.Future;
 
 /**
  * @Author hezhan
@@ -29,5 +32,9 @@ public class ScheduleTaskUtil {
     @Scheduled(cron = "0/2 * * * * ? ")
     public void task3(){
         System.out.println(Thread.currentThread().getName() + "------------>task3");
+    }
+
+    public Future<String> task4(){
+        return new AsyncResult<>(Thread.currentThread().getName() + "------------>task4");
     }
 }

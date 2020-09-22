@@ -2,8 +2,19 @@ package com.example.demo.controller;
 
 import com.example.demo.service.TestService;
 import com.example.demo.util.RedisUtil;
+import com.example.demo.util.ScheduleTaskUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * @Author hezhan
@@ -18,6 +29,9 @@ public class TestController {
 
     @Autowired
     RedisUtil redisUtil;
+
+    @Autowired
+    private ScheduleTaskUtil taskUtil;
 
     @GetMapping("/test")
     public String test() {
@@ -68,5 +82,11 @@ public class TestController {
     @GetMapping("/test/aop")
     public String testAop(){
         return "测试AOP";
+    }
+
+    @GetMapping("/test/async")
+    public String testAsync() throws ExecutionException, InterruptedException {
+        Future<String> result = taskUtil.task4();
+        return result.get();
     }
 }
