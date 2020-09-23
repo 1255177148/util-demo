@@ -35,6 +35,10 @@ public class ScheduleTaskUtil {
     }
 
     public Future<String> task4(){
-        return new AsyncResult<>(Thread.currentThread().getName() + "------------>task4");
+        return task5();
+    }
+
+    private Future<String> task5(){
+        return new AsyncResult<>(Thread.currentThread().getName() + "------------>task5");
     }
 }
