@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.demo.service.TestService;
 import com.example.demo.util.RedisUtil;
 import com.example.demo.util.ScheduleTaskUtil;
+import com.gaiaworks.framework.vo.ClientAuditVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,5 +90,12 @@ public class TestController {
     public String testAsync() throws ExecutionException, InterruptedException {
         Future<String> result = taskUtil.task4();
         return result.get();
+    }
+
+    @GetMapping("/test/import")
+    public String testImport(){
+        ClientAuditVo test = new ClientAuditVo();
+        test.setId("test");
+        return JSON.toJSONString(test);
     }
 }

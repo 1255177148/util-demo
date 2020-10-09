@@ -113,6 +113,15 @@
             <artifactId>ooxml-schemas</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <!-- 一个本地的jar包 -->
+        <dependency>
+            <groupId>com.gaiaworks.framework</groupId>
+            <artifactId>audit-client</artifactId>
+            <version>1.0.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/audit-client-1.0.3.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -120,9 +129,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- 将可运行jar的名字后面加上exec，可依赖的jar替代可运行jar的名字 -->
+                <!-- 将引用的本地jar打入maven生产的jar包 -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <classifier>exec</classifier>
+                    <!-- 将可运行jar的名字后面加上exec，可依赖的jar替代可运行jar的名字 -->
+                    <!--<classifier>exec</classifier>-->
+                    <!-- 将引用的本地jar打入maven生产的jar包 -->
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
 
