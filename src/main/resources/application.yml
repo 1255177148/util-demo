@@ -30,5 +30,8 @@ spring:
     port: 6379
     password: codis123456
 
+swagger:
+  show: true
+
 image:
   url: image/

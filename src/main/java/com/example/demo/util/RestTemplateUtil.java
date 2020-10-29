@@ -84,7 +84,7 @@ public class RestTemplateUtil {
      */
     public void put(String url, Map<String, Map<String, String>> param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.setContentType(MediaType.APPLICATION_JSON);
         Map<String, String> headerParam = param.get(KEY_HEADER);
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
@@ -110,7 +110,7 @@ public class RestTemplateUtil {
      */
     public <T> T post(String url, Map<String, Map<String, String>> param, Class<T> type) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.setContentType(MediaType.APPLICATION_JSON);
         Map<String, String> headerParam = param.get(KEY_HEADER);
         Map<String, String> bodyParam = param.get(KEY_BODY);
         if (headerParam != null) {
@@ -136,7 +136,7 @@ public class RestTemplateUtil {
      */
     public <T> T postForBody(String url, Map<String, Object> param, Class<T> type) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.setContentType(MediaType.APPLICATION_JSON);
         Map<String, String> headerParam = (Map<String, String>) param.get(KEY_HEADER);
         User bodyParam = (User) param.get(KEY_BODY);
         if (headerParam != null) {

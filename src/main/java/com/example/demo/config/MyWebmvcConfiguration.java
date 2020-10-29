@@ -31,7 +31,6 @@ public class MyWebmvcConfiguration implements WebMvcConfigurer {
                 SerializerFeature.DisableCircularReferenceDetect); //消除对同一对象循环引用的问题
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         List<MediaType> mediaTypes = new ArrayList<>();
-        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
         mediaTypes.add(MediaType.APPLICATION_JSON);
         fastJsonHttpMessageConverter.setSupportedMediaTypes(mediaTypes);
         converters.set(0, fastJsonHttpMessageConverter);
