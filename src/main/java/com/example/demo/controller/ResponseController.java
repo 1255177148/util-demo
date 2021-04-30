@@ -39,7 +39,7 @@ public class ResponseController {
      * @return
      */
     @GetMapping("/test/annotation")
-    @Test
+    @Test(value = "hello")
     public String testAnnotation(){
         return "测试自定义注解";
     }

@@ -1,5 +1,6 @@
 package com.example.demo.aspect;
 
+import com.example.demo.annotation.Test;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
@@ -28,9 +29,10 @@ public class TestAspect {
         System.out.println("3");
     }
 
-    @Before("point()")
-    public void before(){
+    @Before(value = "point() && @annotation(test)")
+    public void before(Test test){
         System.out.println("执行before方法");
+        System.out.println("value = " + test.value());
     }
 
     @After("point()")
