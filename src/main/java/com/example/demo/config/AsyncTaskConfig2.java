@@ -28,6 +28,10 @@ public class AsyncTaskConfig2 {
         taskExecutor.setKeepAliveSeconds(200);
         taskExecutor.setThreadNamePrefix("async-");
         // 设置拒绝策略：当pool已经达到max size的时候，如何处理新任务
+        //AbortPolicy 丢弃任务，抛运行时异常
+        //CallerRunsPolicy 执行任务 P:当线程池满以后，队列达到最大值时，异步先会变为同步执行，影响主线程性能，请结合业务场景，具体分析使用
+        //DiscardPolicy 忽视，什么都不会发生
+        //DiscardOldestPolicy 从队列中踢出最先进入队列（最后一个执行）的任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 等待所有任务都完成再继续销毁其他的Bean
