@@ -121,6 +121,25 @@
             <version>3.0</version>
         </dependency>
 
+        <!-- 生成条形码工具类 -->
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j-light</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
         <!-- 一个本地的jar包 -->
         <dependency>
             <groupId>com.gaiaworks.framework</groupId>
