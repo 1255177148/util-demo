@@ -5,6 +5,7 @@ import com.example.demo.entity.ShareModel;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * 日期工具类测试
@@ -23,7 +25,7 @@ public class DateTest {
 
     public static void main(String[] args) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date start = format.parse("2020-02-12");
+        Date start = format.parse("2020-02-01");
         Date end = new Date();
         System.out.println("两个日期相差" + getMonth(start, end) + "个月");
 
@@ -100,6 +102,23 @@ public class DateTest {
         Date date1 = format.parse("2019-12-31");
         Date date2 = format.parse("2019-12-01");
         System.out.println(simpleDateFormat.format(date1).equals(simpleDateFormat.format(date2)));
+
+        String str = "2021-09-27T01:17:48.965+0000";
+        System.out.println(formatDate(str));
+    }
+
+    private static String formatDate(String time) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSZ");
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        df2.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        Date date = null;
+        try {
+            date = df.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String gpsTime = df2.format(date);
+        return gpsTime;
     }
 
 
@@ -128,7 +147,7 @@ public class DateTest {
 
         int result = 0;
         if ((startCalendar.get(Calendar.DATE) == 1)&& (temp.get(Calendar.DATE) == 1)) {
-            result = year * 12 + month + 1;
+            result = year * 12 + month;
         } else if ((startCalendar.get(Calendar.DATE) != 1) && (temp.get(Calendar.DATE) == 1)) {
             result = year * 12 + month;
         } else if ((startCalendar.get(Calendar.DATE) == 1) && (temp.get(Calendar.DATE) != 1)) {
