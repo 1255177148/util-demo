@@ -8,6 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -27,7 +32,8 @@ public class DateTest {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date start = format.parse("2020-02-01");
         Date end = new Date();
-        System.out.println("两个日期相差" + getMonth(start, end) + "个月");
+        Period between = Period.between(dateToLocalDate(start), dateToLocalDate(end));
+        System.out.println("两个日期相差" + between.getMonths() + "个月");
 
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月");
@@ -156,5 +162,9 @@ public class DateTest {
             result = (year * 12 + month - 1) < 0 ? 0 : (year * 12 + month);
         }
         return result + 1;
+    }
+
+    private static LocalDate dateToLocalDate(Date date){
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }
