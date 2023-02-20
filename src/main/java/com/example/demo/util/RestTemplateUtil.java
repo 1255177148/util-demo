@@ -127,6 +127,25 @@ public class RestTemplateUtil {
     }
 
     /**
+     * post请求
+     * @param url 请求路径
+     * @param bodyParam body参数
+     * @param type 指定返回类型
+     * @param <T> 返回类型
+     * @return
+     */
+    public <T> T post(String url, String bodyParam, Class<T> type) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> httpEntity = new HttpEntity<>(bodyParam, headers);
+        try {
+            return restTemplate.postForObject(url, httpEntity, type);
+        } catch (Exception e) {
+            throw new RemoteException("访问" + url + "接口时报错，错误原因为：", e);
+        }
+    }
+
+    /**
      * 当body参数为对象时，就可以明显的感觉到配置的FastJson转换器起作用了
      * @param url
      * @param param

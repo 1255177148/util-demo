@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -68,21 +69,21 @@ public class RestTemplateConfig {
         return restTemplate;
     }
 
-    /**
-     * 底层使用OkHttp实现http通信
-     * @return
-     */
-    @Bean
-    public ClientHttpRequestFactory httpRequestFactory(){
-        return new OkHttp3ClientHttpRequestFactory(okHttpConfig.okHttpClient());
-    }
+//    /**
+//     * 底层使用OkHttp实现http通信
+//     * @return
+//     */
+//    @Bean
+//    public ClientHttpRequestFactory httpRequestFactory(){
+//        return new OkHttp3ClientHttpRequestFactory(okHttpConfig.okHttpClient());
+//    }
 
     /**
      * 底层使用httpClient实现http通信
      * @return
      */
-//    @Bean
-//    public ClientHttpRequestFactory httpRequestFactory(){
-//        return new HttpComponentsClientHttpRequestFactory(httpClientConfig.httpClient());
-//    }
+    @Bean
+    public ClientHttpRequestFactory httpRequestFactory(){
+        return new HttpComponentsClientHttpRequestFactory(httpClientConfig.httpClient());
+    }
 }

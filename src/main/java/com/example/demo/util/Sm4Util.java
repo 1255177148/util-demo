@@ -515,13 +515,13 @@ public class Sm4Util {
         return result;
     }
     public static void main(String[] args) throws Exception {
-        String str = "bb563bdf7d9fdeff9d44d29e0da07d4e249476f762a3edf2688eb6ef210a94a6955d0e5ce25e7a2c588d9b3f6bb81f02652132638597015030204d4c6318437f0070455c556cfec5a02fa53ef8ad33eea214c22221a54d6d38a5a69ad141930a3c10c8687ba651c77f08639311642014967b5cafb8a06153ba97cdb5d30e0a13175e8f96cb3f629d970c21522d61b2f1573681bd6a5076c208202eabaaf6281924bd0aa987ae3be0ff1b67f7ce06bdaa6bf8d4d7ea868f1aac9097a0184153ac13a5484f304d1629cdf2f9775700310e03031e6ed1fc71995d8c8095c72fd6f3605c65a440162817fee4dc4c224a6be9c7356d1f182faaa329545af78f46fcf64fef9906ca337f651aac187b3e0ad0d15a074f3183046b1efb5828a2ddc8b50fd724ee2feddb9a3f9972b5cb3bbc69ba8edb1eed6b463270fbcd627729e76c545e826b57721c0161b36b18f45ecbb5bb3b5c12b089ce4f6c9f0ccb38bab0f48bc05d1691655af001d678dc7d3a7b34b07dfbe9b1707c954084e5125b9579965957603a1db5fef21624ea2af52cfafd126b69b423b106045077329b3e6e5a48ed824c976bf1866918c19d180aa3a286b1f8907056720e7bd232b7bd4506bcab28806026178abd68b745193c371f6b848bb7441f1509254724dac33b9e9bf44fec";
+        String str = "9ceef14df14d80708bb3d58a823988eba785d45d50fd4ca7e7f9d5ae82af151a4552fa75b149ced1d4dcd040f91572373e23a75ee33349f777704d041205dbba8f60a1deb979c0eb59748681ecfe8df15d22e0248f906b11026d09589eb1f9d135eb842733e75c92ef1c796540a42510";
         Map<String, Object> info = Sm4Util.getParams(str);
         System.out.println(JSON.toJSONString(info));
 
         Map<String, Object> map = new HashMap<>();
-        map.put("login_name", "wqx2");
-        map.put("unitClass", "1");
+        map.put("startDate", "2022-09-06");
+        map.put("endDate", "2022-09-09");
         map.put("jzInfo", "{\"exposureDisposal\":\"1\",\"jzMethod\":\"1\",\"jzSituation\":\"3\"}");
         map.put("station_code", "3701020201");
         map.put("data", "[{\"bactPrice\":\"23\",\"bactcode\":\"28\",\"bactname\":\"狂犬病疫苗\",\"corpcode\":\"17\",\"corpname\":\"辽宁成大\",\"jc\":\"1\",\"productname\":\"液体狂犬病疫苗（Vero）\",\"productno\":\"2801\",\"result\":1, \"inocSource\" : \"S\"}]");
@@ -535,6 +535,10 @@ public class Sm4Util {
 
 
         System.out.println(DateUtils.addDays(new Date(), 0));
+
+        String s = "49.0.0,,";
+        String[] arr = s.split("[,]");
+        System.out.println(JSON.toJSONString(arr));
     }
 
 }

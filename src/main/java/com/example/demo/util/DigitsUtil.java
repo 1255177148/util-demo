@@ -17,5 +17,8 @@ public class DigitsUtil {
          */
         String str = String.format("%04d", number);
         System.out.println(str);
+        String s = "01";
+        int num = Integer.parseInt(s);
+        System.out.println(num + 1);
     }
 }
