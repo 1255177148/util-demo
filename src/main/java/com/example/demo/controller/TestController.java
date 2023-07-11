@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.Params;
 import com.example.demo.service.TestService;
 import com.example.demo.util.RedisUtil;
 import com.example.demo.util.ScheduleTaskUtil;
@@ -82,7 +83,7 @@ public class TestController {
     }
 
     @GetMapping("/test/aop")
-    public String testAop(){
+    public String testAop(Params params){
         return "测试AOP";
     }
 
